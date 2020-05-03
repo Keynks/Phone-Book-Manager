@@ -12,39 +12,10 @@ public class Pbook_main {
 	private static String findContact;
 	private static int phoneNum;
 
-
+//before we touch main and start linking commands lets gets objects and the back end figured out.
 	public static void main(String args[]) {
 		displayOptions();
-		
-		
 
-		// linked list for contacts names
-		//LinkedList<String> name = new LinkedList<String>();
-		
-		// Adding elements
-		
-		// Removing elements
-
-		// finding elements
-		
-		
-		
-		//Iterator find = (Iterator) name.iterator();         iterator is use to find specific elements in a linked list
-		//while( find.next()) {
-			
-			//if((String) find.next() == findContact) {
-		///		
-			//}
-			
-	//	}
-
-		//LinkedList<Integer> num = new LinkedList<Integer>();
-
-		// Add number
-		//num.add(phoneNum);
-		// remove number
-
-		// find number
 
 	}
 	
