@@ -1,49 +1,96 @@
 package phoneBook;
 
+/*
+	PLEASE ADD ONTO THIS TO DO LIST AS YOU WORK ON THE PROJECT SO WE CANN SEE WHAT WE HAVE GOING
+	The linked list used in this is a doubly dummy head linked list and its circular
+	A doubly list is a linked list that on each Node it has a reference  to the previous and next node in the list
+	** To Do List 88
+	* clean up alot of code and space it out nice//done
+	* NODE MANIPULATORS//done
+	* CLEAN UP THE MENU BECAUSE IM NOT LIKING THE LAY OUT TOO MUCH PRETTY BLAND
+	* SEPERATE CLASS THAT WILL CREATE OBJECTS THAT HOLD PHONE, NUMBER,
+
+ */
+
+//This class is made up of LINKED LIST MANIPULATORS ONLY.
+
 public class contacts {
 
-	public class Node {
-		int num;
-		Node next;
+	private class Node{//basic linked list setup
+		private Object data;
+		private Node next, prev;
 
-		public Node(int num) {
-			this.num = num;
+		private Node(Object data, Node prev, Node next){
+			this.data = data;
+			this.prev = prev;
+			this.next = next;
 		}
 	}
 
-	public Node head = null;
-	public Node tail = null;
+	private Node head;
+	public int size = 0;
 
-	public void add(int num) {
-		Node phoneNum = new Node(num);
-		if (head == null) {
-			// If list is empty, both head and tail would point to new node.
-			head = phoneNum;
-			tail = phoneNum;
-			phoneNum.next = head;
-		} else {
-			// tail will point to new node.
-			tail.next = phoneNum;
-			// New node will become new tail.
-			tail = phoneNum;
-			// Since, it is circular linked list tail will point to head.
-			tail.next = head;
+	public contacts(){
+		this.head = new Node(null, null, null);
+		this.head.prev = this.head;
+		this.head.next = this.head;
+		this.size = 0;
+	}
+
+	public void addLast(Object data){
+		if(isEmpty())
+			addFirst(data);
+		else{
+			Node newNode = new Node(data, this.head.prev, this.head.next);
+			this.head.prev = newNode;
+			this.head.prev.next = newNode;
+			size++;
 		}
 	}
 
-	public void display() {
-		Node current = head;
-		if (head == null) {
-			System.out.println("List is empty");
-		} else {
-			System.out.println("Nodes of the circular linked list: ");
-			do {
-				// Prints each node by incrementing pointer.
-				System.out.print(" " + current.num);
-				current = current.next;
-			} while (current != head);
-			System.out.println();
+	public boolean remove( Object data){// this method will search the array for the object and return a boolean...
+
+		Node cur = this.head.next;//starting point
+
+		while (cur != this.head){// since we are using dummy head node this.head is our stop point.
+
+			if(this.head.data.equals(data)){
+				cur.prev.next = cur.next;// all this is how you delete a doubly linked list Node its all just relinking the next and prev references.
+				cur.next.prev = cur.prev;
+				size--;//reduce size to show change.
+				return true;
+			}
+			cur = cur.next; // this will increment cur by one node at a time.
 		}
+		return false;
 	}
+
+	public void addFirst(Object data){
+		Node newNode = new Node(data, this.head, this.head.next);
+		this.head.next.prev = newNode;
+		this.head.next = newNode;
+		size++;
+	}
+
+	public boolean isEmpty(){//boolean method that checks the list;
+		return this.size == 0;
+	}
+
+	@Override
+	public String toString(){
+		String result = "{";
+
+		for (Node node = this.head.next; node != this.head; node = node.next) {
+			if(node.next != this.head)
+				result += node.data + "->";
+			else
+				result += node.data;
+		}
+		return result + "}";
+	}
+
+
+
+
 
 }
