@@ -9,6 +9,7 @@ package phoneBook;
 	* NODE MANIPULATORS//done
 	* CLEAN UP THE MENU BECAUSE IM NOT LIKING THE LAY OUT TOO MUCH PRETTY BLAND
 	* SEPERATE CLASS THAT WILL CREATE OBJECTS THAT HOLD PHONE, NUMBER,
+	*included a sort for the contacts
 
  */
 
@@ -74,6 +75,26 @@ public class contacts {
 
 	public boolean isEmpty(){//boolean method that checks the list;
 		return this.size == 0;
+	}
+
+	public void sort(){//insertion sort method
+		if(this.size == 0)
+			return;;
+
+		Node lastSorted, sortedWalker;
+		Comparable firstUnsortedData;
+
+		for(lastSorted = this.head.next; lastSorted != this.head.prev; lastSorted = lastSorted.next){
+			firstUnsortedData = (Comparable) lastSorted.next.data;
+
+			for(sortedWalker = lastSorted; sortedWalker !=head&&
+					((Comparable)sortedWalker.data).compareTo(firstUnsortedData) > 0; sortedWalker = sortedWalker.prev ){
+
+				sortedWalker.next.data = sortedWalker.data;
+			}
+			sortedWalker.next.data = firstUnsortedData;
+		}
+
 	}
 
 	@Override
