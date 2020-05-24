@@ -1,88 +1,16 @@
 package phoneBook;
 
-import java.util.LinkedList;
 import java.util.Scanner;
+import phoneBook.*;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Pbook_main {
 
-//before we touch main and start linking commands lets gets objects and the back end figured out.
-
-	private static contacts list = new contacts();//our liknked list
+	private contacts list = new contacts();//our liknked list
 
 	public static void main(String args[]) {
-
-		System.out.println("``````¶0````1¶1_```````````````````````````````````````\n" +
-				"```````¶¶¶0_`_¶¶¶0011100¶¶¶¶¶¶¶001_````````````````````\n" +
-				"````````¶¶¶¶¶00¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶0_````````````````\n" +
-				"`````1_``¶¶00¶0000000000000000000000¶¶¶¶0_`````````````\n" +
-				"`````_¶¶_`0¶000000000000000000000000000¶¶¶¶¶1``````````\n" +
-				"```````¶¶¶00¶00000000000000000000000000000¶¶¶_`````````\n" +
-				"````````_¶¶00000000000000000000¶¶00000000000¶¶`````````\n" +
-				"`````_0011¶¶¶¶¶000000000000¶¶00¶¶0¶¶00000000¶¶_````````\n" +
-				"```````_¶¶¶¶¶¶¶00000000000¶¶¶¶0¶¶¶¶¶00000000¶¶1````````\n" +
-				"``````````1¶¶¶¶¶000000¶¶0¶¶¶¶¶¶¶¶¶¶¶¶0000000¶¶¶````````\n" +
-				"```````````¶¶¶0¶000¶00¶0¶¶`_____`__1¶0¶¶00¶00¶¶````````\n" +
-				"```````````¶¶¶¶¶00¶00¶10¶0``_1111_`_¶¶0000¶0¶¶¶````````\n" +
-				"``````````1¶¶¶¶¶00¶0¶¶_¶¶1`_¶_1_0_`1¶¶_0¶0¶¶0¶¶````````\n" +
-				"````````1¶¶¶¶¶¶¶0¶¶0¶0_0¶``100111``_¶1_0¶0¶¶_1¶````````\n" +
-				"```````1¶¶¶¶00¶¶¶¶¶¶¶010¶``1111111_0¶11¶¶¶¶¶_10````````\n" +
-				"```````0¶¶¶¶__10¶¶¶¶¶100¶¶¶0111110¶¶¶1__¶¶¶¶`__````````\n" +
-				"```````¶¶¶¶0`__0¶¶0¶¶_¶¶¶_11````_0¶¶0`_1¶¶¶¶```````````\n" +
-				"```````¶¶¶00`__0¶¶_00`_0_``````````1_``¶0¶¶_```````````\n" +
-				"``````1¶1``¶¶``1¶¶_11``````````````````¶`¶¶````````````\n" +
-				"``````1_``¶0_¶1`0¶_`_``````````_``````1_`¶1````````````\n" +
-				"``````````_`1¶00¶¶_````_````__`1`````__`_¶`````````````\n" +
-				"````````````¶1`0¶¶_`````````_11_`````_``_``````````````\n" +
-				"`````````¶¶¶¶000¶¶_1```````_____```_1``````````````````\n" +
-				"`````````¶¶¶¶¶¶¶¶¶¶¶¶0_``````_````_1111__``````````````\n" +
-				"`````````¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶01_`````_11____1111_```````````\n" +
-				"`````````¶¶0¶0¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1101_______11¶_```````````\n" +
-				"``````_¶¶¶0000000¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶0¶0¶¶¶1````````````\n" +
-				"`````0¶¶0000000¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1`````````````\n" +
-				"````0¶0000000¶¶0_````_011_10¶110¶01_1¶¶¶0````_100¶001_`\n" +
-				"```1¶0000000¶0_``__`````````_`````````0¶_``_00¶¶010¶001\n" +
-				"```¶¶00000¶¶1``_01``_11____``1_``_`````¶¶0100¶1```_00¶1\n" +
-				"``1¶¶00000¶_``_¶_`_101_``_`__````__````_0000001100¶¶¶0`\n" +
-				"``¶¶¶0000¶1_`_¶``__0_``````_1````_1_````1¶¶¶0¶¶¶¶¶¶0```\n" +
-				"`_¶¶¶¶00¶0___01_10¶_``__````1`````11___`1¶¶¶01_````````\n" +
-				"`1¶¶¶¶¶0¶0`__01¶¶¶0````1_```11``___1_1__11¶000`````````\n" +
-				"`1¶¶¶¶¶¶¶1_1_01__`01```_1```_1__1_11___1_``00¶1````````\n" +
-				"``¶¶¶¶¶¶¶0`__10__000````1____1____1___1_```10¶0_```````\n" +
-				"``0¶¶¶¶¶¶¶1___0000000```11___1__`_0111_```000¶01```````\n" +
-				"```¶¶¶00000¶¶¶¶¶¶¶¶¶01___1___00_1¶¶¶`_``1¶¶10¶¶0```````\n" +
-				"```1010000¶000¶¶0100_11__1011000¶¶0¶1_10¶¶¶_0¶¶00``````\n" +
-				"10¶000000000¶0________0¶000000¶¶0000¶¶¶¶000_0¶0¶00`````\n" +
-				"¶¶¶¶¶¶0000¶¶¶¶_`___`_0¶¶¶¶¶¶¶00000000000000_0¶00¶01````\n" +
-				"¶¶¶¶¶0¶¶¶¶¶¶¶¶¶_``_1¶¶¶00000000000000000000_0¶000¶01```\n" +
-				"1__```1¶¶¶¶¶¶¶¶¶00¶¶¶¶00000000000000000000¶_0¶0000¶0_``\n" +
-				"```````¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶00000000000000000000010¶00000¶¶_`\n" +
-				"```````0¶¶¶¶¶¶¶¶¶¶¶¶¶¶00000000000000000000¶10¶¶0¶¶¶¶¶0`\n" +
-				"````````¶¶¶¶¶¶¶¶¶¶0¶¶¶00000000000000000000010¶¶¶0011```\n" +
-				"````````1¶¶¶¶¶¶¶¶¶¶0¶¶¶0000000000000000000¶100__1_`````\n" +
-				"`````````¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶000000000000000000¶11``_1``````\n" +
-				"`````````1¶¶¶¶¶¶¶¶¶¶¶0¶¶¶00000000000000000¶11___1_`````\n" +
-				"``````````¶¶¶¶¶¶0¶0¶¶¶¶¶¶¶0000000000000000¶11__``1_````\n" +
-				"``````````¶¶¶¶¶¶¶0¶¶¶0¶¶¶¶¶000000000000000¶1__````__```\n" +
-				"``````````¶¶¶¶¶¶¶¶0¶¶¶¶¶¶¶¶¶0000000000000000__`````11``\n" +
-				"`````````_¶¶¶¶¶¶¶¶¶000¶¶¶¶¶¶¶¶000000000000011_``_1¶¶¶0`\n" +
-				"`````````_¶¶¶¶¶¶0¶¶000000¶¶¶¶¶¶¶000000000000100¶¶¶¶0_`_\n" +
-				"`````````1¶¶¶¶¶0¶¶¶000000000¶¶¶¶¶¶000000000¶00¶¶01`````\n" +
-				"`````````¶¶¶¶¶0¶0¶¶¶0000000000000¶0¶00000000011_``````_\n" +
-				"````````1¶¶0¶¶¶0¶¶¶¶¶¶¶000000000000000000000¶11___11111\n" +
-				"````````¶¶¶¶0¶¶¶¶¶00¶¶¶¶¶¶000000000000000000¶011111111_\n" +
-				"```````_¶¶¶¶¶¶¶¶¶0000000¶0¶00000000000000000¶01_1111111\n" +
-				"```````0¶¶¶¶¶¶¶¶¶000000000000000000000000000¶01___`````\n" +
-				"```````¶¶¶¶¶¶0¶¶¶000000000000000000000000000¶01___1````\n" +
-				"``````_¶¶¶¶¶¶¶¶¶00000000000000000000000000000011_111```\n" +
-				"``````0¶¶0¶¶¶0¶¶0000000000000000000000000000¶01`1_11_``\n" +
-				"``````¶¶¶¶¶¶0¶¶¶0000000000000000000000000000001`_0_11_`\n" +
-				"``````¶¶¶¶¶¶¶¶¶00000000000000000000000000000¶01``_0_11`\n" +
-				"``````¶¶¶¶0¶¶¶¶00000000000000000000000000000001```_1_11");
-		System.out.println("Welcome to the contacts manager");
-
-		displayOptions();
+		Pbook_main ref = new Pbook_main();
+		ref.displayOptions();
 
 
 
@@ -91,13 +19,14 @@ public class Pbook_main {
 
 	}
 	
-	public static void displayOptions() { // options
+	public void displayOptions() { // options
 		Scanner scan = new Scanner(System.in);
+
 		
 		contacts NC = new contacts();
 
 		System.out.println("Choose your option 1, 2, 3.");
-		System.out.println("1. Call contact");
+		System.out.println("1. create contact");
 		System.out.println("2. Save contact");
 		System.out.println("3. Find contact");
 		System.out.println("4. Remove contact");
@@ -110,46 +39,51 @@ public class Pbook_main {
 		switch (choice) {
 
 		case 1:
-			System.out.println("\nWho would you like to call? (First name, Last name)");
-			//NC.display();
+			Object contact = createContact();
+			list.addLast(contact);
+			System.out.println("This is the new updated contacts list");
+			System.out.println(list.toString());
+
+
+
 			break;
 
 		case 2:
-			System.out.println("\nWhat is the name of the contact you would like to save (First name, Last name");
-			System.out.println();
-			System.out.println("Enter the contacts first name ");
-
-		
-			
-
-			System.out.println();
-			System.out.println("Enter the contacts last name");
-
-
-			System.out.println("\nWhat is the number you are saving?");
-
-			System.out.println("\n");
-			//NC.add(phoneNum);
-			//NC.display();
-
 			break;
 
+
 		case 3:
-			System.out.println("What is the name of the contact you are searching?");
-			System.out.println();
 
 			// display contact list
 
 			break;
 			
 		case 4:
-			System.out.println("What contact would you like to remove");
-			//display contact list
+			break;
+
 
 		default: // default case is used to perform the task when none of the cases is true
 
 			break;
 		}
+	}
+
+
+	public Object createContact() {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("\nWhat is the contacts first name??");
+		String fName = sc.next();
+		System.out.print("\nWhat is their last name??");
+		String lName = sc.next();
+		System.out.print("\nwhat is their phone number??");
+		String pNumber = sc.next();
+		System.out.print("\nWhat is their email??\n");
+		String email = sc.next();
+
+		pbConstructor newContact = new pbConstructor(fName,lName,pNumber,email);//creating a new object
+
+		return newContact;
 	}
 
 
