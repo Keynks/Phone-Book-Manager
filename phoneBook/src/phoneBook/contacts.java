@@ -99,7 +99,7 @@ public class contacts {
 
 	@Override
 	public String toString(){
-		String result = "{";
+		String result = "";
 
 		for (Node node = this.head.next; node != this.head; node = node.next) {
 			if(node.next != this.head)
@@ -107,7 +107,7 @@ public class contacts {
 			else
 				result += node.data;
 		}
-		return result + "}";
+		return "\n"+result ;
 	}
 
 
